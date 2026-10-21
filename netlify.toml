@@ -1,2 +1,10 @@
 [build]
-  functions = "functions"
+  base = "frontend"
+  command = "yarn install && CI=false yarn build"
+  publish = "build"
+
+# Single-page app: let React Router handle every path (e.g. /imoveis, /sobre)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
