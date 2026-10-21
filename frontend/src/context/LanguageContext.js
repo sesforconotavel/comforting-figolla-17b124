@@ -1,0 +1,131 @@
+import React, { createContext, useContext, useState } from "react";
+
+const translations = {
+  pt: {
+    nav_buy: "Comprar", nav_rent: "Arrendar", nav_properties: "Imóveis", nav_about: "Sobre",
+    nav_home: "Início", nav_contact: "Contacte-nos",
+    nav_login: "Área Reservada", nav_dashboard: "Backoffice", nav_logout: "Sair",
+    hero_overline: "Consultoria Imobiliária",
+    hero_pre: "O seu próximo lar começa com a ",
+    hero_highlight: "Esforço Notável",
+    hero_title: "Encontre o imóvel dos seus sonhos",
+    hero_subtitle: "Comprar, arrendar ou investir. Acompanhamos cada passo com proximidade, transparência e dedicação total ao seu objetivo.",
+    tab_buy: "Comprar", tab_rent: "Arrendar",
+    search_location: "Localidade, zona ou distrito", search_type: "Tipo de imóvel",
+    search_price: "Preço máximo", search_btn: "Pesquisar", any: "Qualquer",
+    type_apartment: "Apartamento", type_house: "Moradia", type_land: "Terreno",
+    type_commercial: "Comercial", type_garage: "Garagem",
+    featured: "Imóveis em destaque", featured_sub: "Uma seleção das melhores oportunidades",
+    view_all: "Ver todos os imóveis",
+    results: "resultados", no_results: "Nenhum imóvel encontrado. Ajuste os filtros.",
+    sort: "Ordenar", sort_recent: "Mais recentes", sort_price_asc: "Preço: menor primeiro",
+    sort_price_desc: "Preço: maior primeiro",
+    filters: "Filtros", bedrooms: "Quartos", min_price: "Preço mín.", max_price: "Preço máx.",
+    apply: "Aplicar", clear: "Limpar",
+    beds: "quartos", baths: "WC", area: "m²",
+    contact_agent: "Contactar consultor", your_name: "O seu nome", your_email: "Email",
+    your_phone: "Telefone", your_message: "Mensagem", send: "Enviar mensagem",
+    message_sent: "Mensagem enviada! Entraremos em contacto brevemente.",
+    description: "Descrição", characteristics: "Características", features: "Comodidades",
+    reference: "Referência", energy: "Certificado energético",
+    login_title: "Área Reservada", login_sub: "Aceda ao backoffice para gerir imóveis",
+    email: "Email", password: "Palavra-passe", login_btn: "Entrar",
+    google_login: "Entrar com Google", or: "ou",
+    dashboard_title: "Gestão de Imóveis", add_property: "Adicionar imóvel",
+    total_props: "Total de imóveis", for_sale: "Para venda", for_rent: "Para arrendar",
+    edit: "Editar", delete: "Eliminar", confirm_delete: "Eliminar este imóvel?",
+    new_property: "Novo Imóvel", edit_property: "Editar Imóvel",
+    title: "Título", operation: "Operação", city: "Cidade", zone: "Zona / Bairro",
+    address: "Morada", price: "Preço (€)", save: "Guardar", cancel: "Cancelar",
+    images: "Imagens", upload_images: "Carregar imagens", add_url: "Adicionar por URL",
+    image_url: "Colar URL da imagem", add: "Adicionar", reorder_hint: "Arraste para reordenar",
+    videos: "Vídeos", upload_videos: "Carregar vídeos", video_url: "Colar URL do vídeo",
+    featured_label: "Destacar na página inicial", featured_badge: "Destaque",
+    status_col: "Estado", published: "Publicado", draft: "Rascunho",
+    publish_label: "Publicar imóvel (visível ao público)",
+    publish_hint: "Desligue para guardar como rascunho e preparar antes de publicar.",
+    publish_action: "Publicar", unpublish_action: "Despublicar",
+    saved: "Imóvel guardado com sucesso", deleted: "Imóvel eliminado",
+    footer_desc: "Consultoria imobiliária de confiança. Comprar e arrendar com quem entende do mercado.",
+    footer_rights: "Todos os direitos reservados.",
+    back: "Voltar", loading: "A carregar...",
+    btn_buy_wa: "Comprar", btn_rent_wa: "Arrendar",
+    wa_message: 'Olá! Tenho interesse no imóvel "{title}" (ref. {ref}). Podem dar-me mais informações?',
+    feat1_t: "Confiança", feat1_d: "Acompanhamento jurídico e transparência em cada negócio.",
+    feat2_t: "Valorização", feat2_d: "Avaliação de mercado rigorosa para o melhor preço.",
+    feat3_t: "Proximidade", feat3_d: "Consultores dedicados do início ao fim do processo.",
+  },
+  en: {
+    nav_buy: "Buy", nav_rent: "Rent", nav_properties: "Properties", nav_about: "About",
+    nav_home: "Home", nav_contact: "Contact us",
+    nav_login: "Members Area", nav_dashboard: "Backoffice", nav_logout: "Logout",
+    hero_overline: "Real Estate Consultancy",
+    hero_pre: "Your next home begins with ",
+    hero_highlight: "Esforço Notável",
+    hero_title: "Find the home of your dreams",
+    hero_subtitle: "Buy, rent or invest. We support every step with proximity, transparency and total dedication to your goal.",
+    tab_buy: "Buy", tab_rent: "Rent",
+    search_location: "City, area or district", search_type: "Property type",
+    search_price: "Max price", search_btn: "Search", any: "Any",
+    type_apartment: "Apartment", type_house: "House", type_land: "Land",
+    type_commercial: "Commercial", type_garage: "Garage",
+    featured: "Featured properties", featured_sub: "A selection of the best opportunities",
+    view_all: "View all properties",
+    results: "results", no_results: "No properties found. Adjust your filters.",
+    sort: "Sort", sort_recent: "Most recent", sort_price_asc: "Price: low to high",
+    sort_price_desc: "Price: high to low",
+    filters: "Filters", bedrooms: "Bedrooms", min_price: "Min price", max_price: "Max price",
+    apply: "Apply", clear: "Clear",
+    beds: "beds", baths: "baths", area: "m²",
+    contact_agent: "Contact agent", your_name: "Your name", your_email: "Email",
+    your_phone: "Phone", your_message: "Message", send: "Send message",
+    message_sent: "Message sent! We'll get back to you shortly.",
+    description: "Description", characteristics: "Characteristics", features: "Amenities",
+    reference: "Reference", energy: "Energy certificate",
+    login_title: "Members Area", login_sub: "Access the backoffice to manage properties",
+    email: "Email", password: "Password", login_btn: "Sign in",
+    google_login: "Sign in with Google", or: "or",
+    dashboard_title: "Property Management", add_property: "Add property",
+    total_props: "Total properties", for_sale: "For sale", for_rent: "For rent",
+    edit: "Edit", delete: "Delete", confirm_delete: "Delete this property?",
+    new_property: "New Property", edit_property: "Edit Property",
+    title: "Title", operation: "Operation", city: "City", zone: "Zone / Neighborhood",
+    address: "Address", price: "Price (€)", save: "Save", cancel: "Cancel",
+    images: "Images", upload_images: "Upload images", add_url: "Add by URL",
+    image_url: "Paste image URL", add: "Add", reorder_hint: "Drag to reorder",
+    videos: "Videos", upload_videos: "Upload videos", video_url: "Paste video URL",
+    featured_label: "Feature on homepage", featured_badge: "Featured",
+    status_col: "Status", published: "Published", draft: "Draft",
+    publish_label: "Publish property (visible to public)",
+    publish_hint: "Turn off to save as draft and prepare before publishing.",
+    publish_action: "Publish", unpublish_action: "Unpublish",
+    saved: "Property saved successfully", deleted: "Property deleted",
+    footer_desc: "Trusted real estate consultancy. Buy and rent with market experts.",
+    footer_rights: "All rights reserved.",
+    back: "Back", loading: "Loading...",
+    btn_buy_wa: "Buy", btn_rent_wa: "Rent",
+    wa_message: 'Hello! I am interested in the property "{title}" (ref. {ref}). Could you give me more information?',
+    feat1_t: "Trust", feat1_d: "Legal support and transparency in every deal.",
+    feat2_t: "Value", feat2_d: "Rigorous market valuation for the best price.",
+    feat3_t: "Proximity", feat3_d: "Dedicated agents from start to finish.",
+  },
+};
+
+const LanguageContext = createContext();
+
+export const LanguageProvider = ({ children }) => {
+  const [lang, setLang] = useState(localStorage.getItem("lang") || "pt");
+  const toggle = () => {
+    const next = lang === "pt" ? "en" : "pt";
+    setLang(next);
+    localStorage.setItem("lang", next);
+  };
+  const t = (key) => translations[lang][key] || key;
+  return (
+    <LanguageContext.Provider value={{ lang, toggle, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+};
+
+export const useLang = () => useContext(LanguageContext);

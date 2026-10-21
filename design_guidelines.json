@@ -1,0 +1,144 @@
+{
+  "theme_strategy": {
+    "primary_theme": "light",
+    "rationale": "Real estate marketplaces demand high trust, clarity, and focus on photography. A light theme with deep navy and petrol blue accents conveys 'Old Money Tech' and established authority, matching the 'Esforço Notável Consultoria' brand."
+  },
+  "typography": {
+    "heading_font": "Playfair Display",
+    "body_font": "Manrope",
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#0d3b54]",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#0d3b54]",
+      "h3": "text-xl sm:text-2xl font-semibold text-[#1a5f7a]",
+      "body": "text-base leading-relaxed text-slate-600",
+      "labels": "text-xs font-bold uppercase tracking-[0.2em] text-slate-500"
+    },
+    "rules": [
+      "NEVER use generic fonts like Inter or Roboto for headings.",
+      "Headings must use Playfair Display for a luxurious, editorial feel.",
+      "Body text and data-heavy components (like pricing, square meters) must use Manrope for crisp legibility.",
+      "All overlines and tiny labels must be uppercase with wide tracking (tracking-[0.2em])."
+    ]
+  },
+  "colors": {
+    "brand_primary": "#1a5f7a",
+    "brand_navy": "#0d3b54",
+    "background_base": "#f8fafc",
+    "surface_white": "#ffffff",
+    "accent_gold": "#d4af37",
+    "text_dark": "#0f172a",
+    "text_muted": "#64748b",
+    "rules": [
+      "Use #1a5f7a (Petrol Blue) for primary interactive elements (Search CTA, Buy/Rent toggles).",
+      "Use #0d3b54 (Navy Blue) for deep structural elements, footers, and primary typography.",
+      "Never use pure black (#000000) or pure gray. Always tint grays toward the brand blue (slate scale).",
+      "Ensure minimum 4.5:1 contrast for all text. Use text shadow over hero images if needed.",
+      "FORBIDDEN COLORS: Teal green (#1B93A4) and AI purple (#7351B7)."
+    ]
+  },
+  "visual_enhancers": {
+    "surfaces": [
+      "Glassmorphism ('Crystal' Variant): For sticky header/nav. Use backdrop-blur-xl bg-white/80 with a 1px border-b border-slate-200.",
+      "Cards: Flat white backgrounds (#ffffff) on off-white base (#f8fafc) with a delicate 1px border (border-slate-200) and NO default shadow. On hover, apply a subtle shadow-lg and -translate-y-1 lift.",
+      "Hero Overlay: bg-black/40 over the hero image to ensure the central search bar and white text have perfect contrast. Never exceed 50% opacity."
+    ],
+    "shapes": "Subtle roundness. Use rounded-lg (8px) for buttons and inputs. Avoid overly pill-shaped elements for this professional brand unless it's a specific badge."
+  },
+  "components": {
+    "hero_search_bar": {
+      "type": "Custom composed Shadcn UI",
+      "structure": "A large central floating panel over the hero image. Use Shadcn Tabs for 'Comprar / Arrendar' (Buy/Rent). Inside the active tab, a responsive flex/grid row containing location Input, Property Type Select, Price Range Select, and a prominent search Button.",
+      "styling": "bg-white p-6 rounded-xl shadow-2xl border border-white/20"
+    },
+    "property_card": {
+      "type": "Custom Grid Item",
+      "structure": "Image top (with aspect-video or aspect-[4/3]), content bottom. Include a 'Favorite' heart icon absolute positioned top-right on the image. Price in large Manrope font, title, location, and a row of icons/text for beds, baths, and area (m²).",
+      "styling": "border border-slate-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 bg-white"
+    },
+    "property_details_split": {
+      "type": "Split-Panel Architecture",
+      "structure": "Left column (col-span-8): Masonry/grid gallery of large images, detailed description, map. Right column (col-span-4): Sticky container with price, key stats, and lead capture form (Contact Agent).",
+      "styling": "Right column must use sticky top-24 to stay in view while scrolling photos."
+    },
+    "admin_backoffice": {
+      "type": "Dashboard",
+      "structure": "High-density grid. Sidebar navigation. Shadcn Data-tables for property lists. Forms with image upload zones.",
+      "styling": "Strict grid, compact spacing, functional beauty. Use #f8fafc background, white cards, sharp edges."
+    },
+    "general_rules": [
+      "Use Shadcn components for all interactive logic (Select, Dialog, Tabs, Forms, Input).",
+      "Override Shadcn default styles to match the Playfair/Manrope typography and Petrol/Navy color scheme.",
+      "NEVER use native <select> or <input type='date'>. Use Shadcn equivalents."
+    ]
+  },
+  "grids_and_layouts": {
+    "marketing_pages": "Use generous spacing (py-24, gap-12). Rely on bento-style grids for featured sections.",
+    "listings_grid": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6. Direct children only.",
+    "admin_dashboard": "grid grid-cols-1 lg:grid-cols-4 gap-6 with dense spacing (p-4, gap-4).",
+    "alignment": "Mobile-first approach. Optical alignment over geometrical. Left-align dense content."
+  },
+  "motion": {
+    "hover_states": "All buttons and cards must have transition-transform duration-200 ease-out. Cards lift (-translate-y-1).",
+    "entrance": "Staggered fade-in-up for listing grids using simple CSS animation or framer-motion.",
+    "rules": "Disable animations if prefers-reduced-motion is active. Do not use 'transition: all'."
+  },
+  "accessibility": {
+    "testing": "All interactive elements MUST include a data-testid attribute (e.g., data-testid='hero-search-button', data-testid='property-card-1').",
+    "contrast": "Text must meet APCA/WCAG AA standards. Ensure hover states explicitly define text colors.",
+    "aria": "Use aria-hidden='true' on decorative icons. Ensure forms have visible labels."
+  },
+  "media_and_images": {
+    "rules": [
+      "NEVER use placeholder text or dummy image URLs.",
+      "Images must not exceed 80vh on mobile."
+    ],
+    "image_urls": {
+      "hero_background": {
+        "url": "https://images.unsplash.com/photo-1628012209120-d9db7abf7eab",
+        "description": "Modern white architecture under blue sky - creates aspirational real estate vibe"
+      },
+      "property_listing_1": {
+        "url": "https://images.unsplash.com/photo-1564703048291-bcf7f001d83d",
+        "description": "White house exterior"
+      },
+      "property_listing_2": {
+        "url": "https://images.unsplash.com/photo-1665249934445-1de680641f50",
+        "description": "Bright modern apartment interior living room"
+      },
+      "property_listing_3": {
+        "url": "https://images.unsplash.com/photo-1562250883-39d8b01616c8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDB8MHwxfHNlYXJjaHwyfHxsaXNib24lMjBjaXR5JTIwc3RyZWV0JTIwc3Vubnl8ZW58MHx8fHwxNzgzMzY2MjYzfDA&ixlib=rb-4.1.0&q=85",
+        "description": "Lisbon portugal street sunny"
+      }
+    }
+  },
+  "instructions_to_main_agent": {
+    "setup_steps": [
+      "Install required fonts from Google Fonts: Playfair Display and Manrope.",
+      "Install lucide-react for icons.",
+      "Initialize Shadcn UI and add components: button, input, select, tabs, card, dialog, table, form.",
+      "Implement Google Auth + Email/Password for the Backoffice login.",
+      "Implement a robust layout with a glassmorphic Navbar containing the 'Esforço Notável CONSULTORIA' text logo and a PT/EN language toggle."
+    ],
+    "development_phases": [
+      "1. Layout & Shell: Setup Navbar, Footer, and routing (Public vs Admin).",
+      "2. Hero & Search: Build the high-impact hero section with the complex search panel.",
+      "3. Marketplace: Build the property listings grid and the individual property detail split-panel page.",
+      "4. Admin Backoffice: Build the secure area to add/edit/delete properties with image URLs."
+    ]
+  },
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. Avoid the 'AI slop' aesthetic. Make it crisp and premium.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients.",
+    "Create depth through layered design elements with z-index hierarchy and crisp borders.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur).",
+    "You MUST NOT apply universal transition (e.g., transition: all). Always add specific transitions (e.g., transition-transform).",
+    "You MUST NOT center align the app container in CSS. Left-align text for readability.",
+    "Always use modern button styles (rounded-lg, interaction animations).",
+    "NEVER use AI assistant Emoji characters (🤖🧠💭💡) for icons. Use lucide-react.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Main agent relies on provided image URLs. Missing categories = main agent uses placeholder text which is FORBIDDEN.",
+    "Prioritize using pre-existing components from src/components/ui.",
+    "Use 'sonner' for toasts.",
+    "All interactive and key informational elements MUST include a data-testid attribute to facilitate robust automated testing."
+  ]
+}
